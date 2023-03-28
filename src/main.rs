@@ -1,8 +1,9 @@
 use std::io;
 
+use rand::Rng;
+
 fn get_random_number() -> i8 {
-    let target: i8 = rand::random();
-    target.abs().into()
+    rand::thread_rng().gen_range(1..=100);
 }
 fn main() {
     println!("Welcome to the EPIC number guesser! Guess a number, will you?");
