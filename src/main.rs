@@ -2,7 +2,7 @@ use std::io;
 
 use rand::Rng;
 
-fn get_random_number() -> i8 {
+fn get_random_number() -> i32 {
     rand::thread_rng().gen_range(1..=100)
 }
 
@@ -26,11 +26,11 @@ fn main() {
             _ => 0,
         };
 
-        if num_guess == target.into() {
-            break;
-        } else {
-            println!("Ah bummer, thats wrong! :( Try again!")
-        }
+        match num_guess.cmp(&target) {
+            std::cmp::Ordering::Equal => break,
+            std::cmp::Ordering::Greater => println!("Too big!"),
+            std::cmp::Ordering::Less => println!("Too small!"),
+        };
     }
 
     println!("You found it! It was {} :)", target)
