@@ -1,3 +1,5 @@
+use std::io;
+
 fn get_random_number() -> i8 {
     let target: i8 = rand::random();
     target.abs().into()
@@ -11,10 +13,10 @@ fn main() {
 
     loop {
         let mut buf = String::new();
-        match std::io::stdin().read_line(&mut buf) {
-            Ok(_) => {}
-            _ => panic!("error while printing!"),
-        }
+        io::stdin()
+            .read_line(&mut buf)
+            .expect("error while reading");
+
         let input = buf.trim();
 
         let num_guess = match input.parse::<i32>() {
