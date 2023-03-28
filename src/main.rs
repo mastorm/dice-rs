@@ -21,12 +21,12 @@ fn main() {
 
         let input = buf.trim();
 
-        let num_guess = match input.parse::<i32>() {
+        let input = match input.parse::<i32>() {
             Ok(n) => n,
             _ => 0,
         };
 
-        match num_guess.cmp(&target) {
+        match input.cmp(&target) {
             std::cmp::Ordering::Equal => break,
             std::cmp::Ordering::Greater => println!("Too big!"),
             std::cmp::Ordering::Less => println!("Too small!"),
